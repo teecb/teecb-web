@@ -1,0 +1,7 @@
+# pnpm 10+ refuses to run dependency install scripts unless they are listed
+# here; in CI (Vercel) an unlisted script fails the install outright.
+# esbuild needs its postinstall to place the platform binary.
+allowBuilds:
+  esbuild: true
+  sharp: false
+  unrs-resolver: false

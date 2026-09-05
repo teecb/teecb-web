@@ -1,0 +1,129 @@
+/* ============================================================
+   DESIGN TOKENS — warm editorial, light + dark
+   Everything visual is driven by these variables. A rebrand is an
+   edit to this file only; components reference tokens, never raw
+   hex or px. Dark mode swaps the same names under html[data-theme].
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg: #f7f3ec;
+  --bg-2: #efe8dc;
+  --surface: #fffdf9;
+  --surface-2: #f3ece0;
+  --surface-3: #ebe2d3;
+
+  /* Ink */
+  --ink: #231d18;
+  --ink-soft: #4a4038;
+  --muted: #6f665b;
+  --faint: #a0968a;
+
+  /* Lines */
+  --line: #e7ddcf;
+  --line-2: #d8ccbb;
+
+  /* Brand — gold on deep navy, drawn from the church crest */
+  --accent: #8a6a1f;
+  --accent-2: #6f5416;
+  --accent-3: #e2b95a;
+  --accent-soft: #f6ecd0;
+  --accent-ink: #ffffff;
+  --gold: #c9a24a;
+  --gold-soft: #f6ecd0;
+  --green: #4f7a52;
+  --live: #d33f3f;
+
+  /* Dark decorative panels (same in both themes) */
+  --dark: #0f1a33;
+  --dark-2: #16244a;
+  --dark-3: #1e2f5c;
+  --hero-ink: #faf5ec;
+  --hero-muted: rgba(250, 245, 236, 0.72);
+  --logo-bg: #0f1a33;
+
+  /* Focus */
+  --focus: #8a6a1f;
+
+  /* Shape */
+  --radius-sm: 9px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+
+  /* Layout */
+  --maxw: 1180px;
+  --gutter: clamp(1.25rem, 4vw, 2rem);
+  --nav-h: 76px;
+  --nav-h-compact: 62px;
+
+  /* Type */
+  --font-display: "Fraunces", "Fraunces Fallback", Georgia, "Times New Roman", serif;
+  --font-text: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-ethiopic: "Noto Sans Ethiopic", "Noto Serif Ethiopic", "Abyssinica SIL", Kefa, Nyala, Ebrima, system-ui, sans-serif;
+
+  --step--1: clamp(0.82rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.4rem);
+  --step-2: clamp(1.55rem, 1.3rem + 1.1vw, 2.1rem);
+  --step-3: clamp(2rem, 1.5rem + 2.2vw, 3rem);
+  --step-4: clamp(2.6rem, 1.7rem + 4vw, 4.4rem);
+  --step-5: clamp(3rem, 1.8rem + 5.6vw, 5.6rem);
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(30, 30, 50, 0.06), 0 1px 1px rgba(30, 30, 50, 0.04);
+  --shadow-md: 0 14px 40px -12px rgba(30, 35, 60, 0.22);
+  --shadow-lg: 0 30px 70px -20px rgba(20, 25, 50, 0.35);
+  --shadow-accent: 0 10px 24px -10px rgba(138, 106, 31, 0.55);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.7, 0.24, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur: 260ms;
+  --dur-slow: 500ms;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0b1120;
+  --bg-2: #101829;
+  --surface: #131c30;
+  --surface-2: #1a2440;
+  --surface-3: #22304f;
+
+  --ink: #f1ecdf;
+  --ink-soft: #d3cbbb;
+  --muted: #a39c8e;
+  --faint: #6f6a60;
+
+  --line: #223052;
+  --line-2: #2e3f68;
+
+  --accent: #e2b95a;
+  --accent-2: #edc978;
+  --accent-3: #f0d08a;
+  --accent-soft: #2a2a24;
+  --accent-ink: #1a1408;
+  --gold: #e2b95a;
+  --gold-soft: #2a2416;
+  --green: #7ba97e;
+  --live: #ef5a5a;
+
+  --dark: #070c19;
+  --dark-2: #0d1426;
+  --dark-3: #142038;
+  --hero-ink: #f7efe3;
+  --hero-muted: rgba(247, 239, 227, 0.68);
+  --logo-bg: #22355f;
+
+  --focus: #e2b95a;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 14px 40px -12px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 30px 70px -20px rgba(0, 0, 0, 0.65);
+  --shadow-accent: 0 10px 24px -10px rgba(226, 185, 90, 0.45);
+}

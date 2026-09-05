@@ -1,0 +1,315 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+@import "../styles/fonts.css";
+
+/* Expose design tokens as Tailwind utilities (bg-bg, text-ink, font-display, …). */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-green: var(--green);
+  --color-live: var(--live);
+
+  --color-dark: var(--dark);
+  /* Aliases: Tailwind will not emit text-dark / text-bg, so text colours use these. */
+  --color-navy: var(--dark);
+  --color-canvas: var(--bg);
+  --color-logo: var(--logo-bg);
+  --color-dark-2: var(--dark-2);
+  --color-dark-3: var(--dark-3);
+  --color-hero-ink: var(--hero-ink);
+  --color-hero-muted: var(--hero-muted);
+
+  --font-display: var(--font-display);
+  --font-text: var(--font-text);
+  --font-ethiopic: var(--font-ethiopic);
+
+  --text-step--1: var(--step--1);
+  --text-step-0: var(--step-0);
+  --text-step-1: var(--step-1);
+  --text-step-2: var(--step-2);
+  --text-step-3: var(--step-3);
+  --text-step-4: var(--step-4);
+  --text-step-5: var(--step-5);
+
+  --radius-token-sm: var(--radius-sm);
+  --radius-token: var(--radius);
+  --radius-token-lg: var(--radius-lg);
+  --radius-token-xl: var(--radius-xl);
+
+  --shadow-token-sm: var(--shadow-sm);
+  --shadow-token-md: var(--shadow-md);
+  --shadow-token-lg: var(--shadow-lg);
+  --shadow-token-accent: var(--shadow-accent);
+
+  --ease-token: var(--ease);
+  --ease-token-out: var(--ease-out);
+}
+
+/* ---------- Base ----------
+   Everything here lives in @layer base so Tailwind utilities (which sit in
+   @layer utilities) always win over it. Unlayered CSS would beat utilities. */
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-text);
+    font-size: var(--step-0);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition:
+      background-color var(--dur-slow) var(--ease),
+      color var(--dur-slow) var(--ease);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  h1 em,
+  h2 em {
+    font-style: italic;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  svg,
+  video,
+  iframe {
+    display: block;
+    max-width: 100%;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Amharic: Ethiopic glyphs are taller and wider, and Fraunces has no
+     Ethiopic coverage, so the whole page switches to the Ethiopic stack. */
+  :lang(am) {
+    font-family: var(--font-ethiopic);
+    line-height: 1.8;
+  }
+  :lang(am) h1,
+  :lang(am) h2,
+  :lang(am) h3,
+  :lang(am) h4,
+  :lang(am) .font-display {
+    font-family: var(--font-ethiopic);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.25;
+  }
+  :lang(am) em {
+    font-style: normal;
+    color: var(--accent-3);
+  }
+
+  /* Theme toggle icons are pure CSS off html[data-theme] — no hydration state. */
+  .theme-icon-dark {
+    display: none;
+  }
+  html[data-theme="dark"] .theme-icon-light {
+    display: none;
+  }
+  html[data-theme="dark"] .theme-icon-dark {
+    display: inline-flex;
+  }
+}
+
+@layer components {
+  /* ---------- Decorative ---------- */
+
+  /* Soft radial "mesh" wash used on dark panels and the hero. */
+  .mesh {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(60% 55% at 14% 8%, rgba(226, 185, 90, 0.28), transparent 60%),
+      radial-gradient(45% 50% at 86% 16%, rgba(255, 214, 140, 0.16), transparent 62%),
+      radial-gradient(70% 60% at 60% 105%, rgba(90, 120, 210, 0.22), transparent 65%);
+  }
+
+  /* Fine film grain, keeps big flat panels from looking plastic. */
+  .grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
+  }
+
+  /* Frosted header background. */
+  .glass {
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    backdrop-filter: saturate(160%) blur(14px);
+  }
+
+  /* ---------- Motion ---------- */
+
+  /* Scroll-reveal: opted in by <Reveal>. Hidden until it enters the viewport. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .animate-fade-up {
+    animation: fade-up var(--dur-slow) var(--ease-out) both;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
+    }
+    70% {
+      box-shadow: 0 0 0 7px rgba(255, 255, 255, 0);
+    }
+  }
+  .live-dot {
+    animation: pulse-dot 1.6s var(--ease) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ---------- Editorial rich text (Portable Text) ---------- */
+
+  .prose-church {
+    max-width: 68ch;
+    color: var(--ink-soft);
+    font-size: var(--step-0);
+  }
+  .prose-church > * + * {
+    margin-top: 1.1em;
+  }
+  .prose-church h3 {
+    margin-top: 2em;
+    font-size: var(--step-1);
+    color: var(--ink);
+  }
+  .prose-church blockquote {
+    margin: 1.6em 0;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--accent);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    color: var(--ink);
+  }
+  :lang(am) .prose-church blockquote {
+    font-family: var(--font-ethiopic);
+  }
+  .prose-church ul,
+  .prose-church ol {
+    padding-left: 1.4rem;
+  }
+  .prose-church li + li {
+    margin-top: 0.4em;
+  }
+  .prose-church a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-church strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+}
