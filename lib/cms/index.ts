@@ -48,6 +48,7 @@ function normalizeSite(raw: RawSite): SiteSettings {
     ...base,
     ...raw,
     timeZone: raw.timeZone || base.timeZone,
+    wordmark: raw.wordmark?.line1 ? { ...base.wordmark, ...raw.wordmark } : base.wordmark,
     address: { ...base.address, ...raw.address },
     contact: { ...base.contact, ...raw.contact },
     services: raw.services?.length ? raw.services : base.services,

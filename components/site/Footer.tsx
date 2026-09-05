@@ -22,7 +22,7 @@ export function Footer({ site, locale, t, items, logoSrc = null }: { site: SiteS
           <div>
             <div className="flex items-center gap-3">
               <BrandMark src={logoSrc} size={40} className="text-[var(--dark-3)]" />
-              <span className="font-display text-xl font-semibold">{text(site.shortName, locale)}</span>
+              <span className="max-w-xs font-display text-[19px] font-semibold leading-tight">{text(site.name, locale)}</span>
             </div>
             <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-hero-muted">{text(site.tagline, locale)}</p>
             <SocialLinks links={site.socials} className="mt-6" onDark />

@@ -19,16 +19,32 @@ export function BrandMark({ src, size = 36, className }: { src: string | null; s
   return <Image src={src} alt="" width={size} height={size} priority className={cn("shrink-0 object-contain", className)} style={{ width: size, height: size }} />;
 }
 
-/** Mark + wordmark, linking home. */
-export function Logo({ href, name, logoSrc = null, compact = false, onDark = false }: { href: string; name: string; logoSrc?: string | null; compact?: boolean; onDark?: boolean }) {
+/** Mark + two-line wordmark, linking home. */
+export function Logo({
+  href,
+  name,
+  wordmark,
+  logoSrc = null,
+  compact = false,
+  onDark = false,
+}: {
+  href: string;
+  /** Full name, for assistive technology. */
+  name: string;
+  wordmark: { line1: string; line2: string };
+  logoSrc?: string | null;
+  compact?: boolean;
+  onDark?: boolean;
+}) {
   return (
-    <Link
-      href={href}
-      className={cn("group inline-flex items-center gap-3 rounded-full", onDark ? "text-hero-ink" : "text-ink")}
-      aria-label={name}
-    >
-      <BrandMark src={logoSrc} size={compact ? 34 : 38} className="transition-transform duration-300 ease-token group-hover:-rotate-3" />
-      <span className={cn("font-display text-[17px] font-semibold tracking-tight", compact && "hidden sm:inline")}>{name}</span>
+    <Link href={href} className={cn("group inline-flex items-center gap-3 rounded-full", onDark ? "text-hero-ink" : "text-ink")} aria-label={name}>
+      <BrandMark src={logoSrc} size={compact ? 38 : 42} className="transition-transform duration-300 ease-token group-hover:-rotate-3" />
+      <span className="flex flex-col leading-none" aria-hidden>
+        <span className="font-display text-[16.5px] font-semibold tracking-tight sm:text-[17.5px]">{wordmark.line1}</span>
+        <span className={cn("mt-1 text-[9.5px] font-semibold uppercase tracking-[0.16em] sm:text-[10px]", onDark ? "text-accent-3" : "text-accent")}>
+          {wordmark.line2}
+        </span>
+      </span>
     </Link>
   );
 }

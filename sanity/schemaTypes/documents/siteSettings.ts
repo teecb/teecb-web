@@ -16,6 +16,17 @@ export const siteSettings = defineType({
   fields: [
     defineField({ name: "name", title: "Church name", type: "localizedString", group: "identity", validation: required }),
     defineField({ name: "shortName", type: "localizedString", group: "identity", validation: required }),
+    defineField({
+      name: "wordmark",
+      title: "Header wordmark",
+      type: "object",
+      group: "identity",
+      description: "Two short lines shown next to the logo, e.g. “Tremont Ethiopian” / “Evangelical Church · Boston”.",
+      fields: [
+        defineField({ name: "line1", title: "Top line", type: "localizedString", validation: required }),
+        defineField({ name: "line2", title: "Bottom line", type: "localizedString", validation: required }),
+      ],
+    }),
     defineField({ name: "tagline", type: "localizedString", group: "identity", validation: required }),
     defineField({
       name: "description",

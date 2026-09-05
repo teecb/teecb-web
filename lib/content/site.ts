@@ -10,6 +10,10 @@ export const site: SiteSettings = {
     am: "ትሬሞንት የኢትዮጵያ ወንጌላዊት ቤተ ክርስቲያን በቦስተን",
   },
   shortName: { en: "Tremont Church", am: "ትሬሞንት ቤተ ክርስቲያን" },
+  wordmark: {
+    line1: { en: "Tremont Ethiopian", am: "ትሬሞንት የኢትዮጵያ" },
+    line2: { en: "Evangelical Church · Boston", am: "ወንጌላዊት ቤተ ክርስቲያን · ቦስተን" },
+  },
   tagline: {
     en: "An Ethiopian evangelical community in Boston, learning to follow Jesus together.",
     am: "በቦስተን የሚገኝ የኢትዮጵያ ወንጌላዊ ማኅበረሰብ፤ ኢየሱስን አብረን ለመከተል የምንማር።",

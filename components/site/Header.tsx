@@ -18,6 +18,7 @@ export type HeaderProps = {
   locale: Locale;
   homeHref: string;
   name: string;
+  wordmark: { line1: string; line2: string };
   /** Path to real crest artwork, when present in public/brand. */
   logoSrc?: string | null;
   items: NavItem[];
@@ -36,7 +37,7 @@ export type HeaderProps = {
 };
 
 /** Sticky site header: frosted on scroll, active-link state, full-screen mobile menu. */
-export function Header({ locale, homeHref, name, logoSrc, items, give, watchHref, liveLabel, initialLive, labels }: HeaderProps) {
+export function Header({ locale, homeHref, name, wordmark, logoSrc, items, give, watchHref, liveLabel, initialLive, labels }: HeaderProps) {
   const pathname = usePathname();
   const liveNow = useLiveStatus(initialLive ? { id: "", title: "" } : null);
   const live = liveNow ? { href: watchHref, label: liveLabel } : undefined;
@@ -79,7 +80,7 @@ export function Header({ locale, homeHref, name, logoSrc, items, give, watchHref
           scrolled ? "h-[var(--nav-h-compact)]" : "h-[var(--nav-h)]",
         )}
       >
-        <Logo href={homeHref} name={name} logoSrc={logoSrc} compact />
+        <Logo href={homeHref} name={name} wordmark={wordmark} logoSrc={logoSrc} compact />
 
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
           {items.map((item) => (

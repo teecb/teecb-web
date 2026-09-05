@@ -6,7 +6,7 @@ import { defineQuery } from "next-sanity";
  */
 
 export const siteSettingsQuery = defineQuery(`*[_type == "siteSettings"][0]{
-  name, shortName, tagline, description, timeZone, address, contact,
+  name, shortName, wordmark, tagline, description, timeZone, address, contact,
   services, socials, youtube, watch, giving, announcement
 }`);
 

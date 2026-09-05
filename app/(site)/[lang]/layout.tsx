@@ -80,7 +80,8 @@ export default async function SiteLayout({ children, params }: { children: React
         <Header
           locale={locale}
           homeHref={localePath(locale)}
-          name={text(site.shortName, locale)}
+          name={text(site.name, locale)}
+          wordmark={{ line1: text(site.wordmark.line1, locale), line2: text(site.wordmark.line2, locale) }}
           logoSrc={logoSrc}
           items={items}
           give={give}

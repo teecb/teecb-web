@@ -68,6 +68,11 @@ export type Announcement = {
 export type SiteSettings = {
   name: Localized;
   shortName: Localized;
+  /** Two-line header wordmark: a display line and a small tracked line beneath it. */
+  wordmark: {
+    line1: Localized;
+    line2: Localized;
+  };
   tagline: Localized;
   description: Localized;
   /** IANA zone used for every date/time on the site. */
