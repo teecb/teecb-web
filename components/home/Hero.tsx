@@ -59,7 +59,7 @@ export function Hero({
       <div className="mesh" aria-hidden />
       <div className="grain" aria-hidden />
       <ArchMark />
-      <Container className="relative flex min-h-[calc(100svh-var(--nav-h))] max-h-[900px] flex-col justify-center py-20 sm:py-28">
+      <Container className="relative flex min-h-[min(calc(100svh-var(--nav-h)),820px)] flex-col justify-center py-16 sm:py-24">
         <div className="max-w-3xl">
           {isLive ? (
             <Badge tone="live" className="animate-fade-up">
@@ -100,7 +100,7 @@ export function Hero({
           {facts.map((fact) => (
             <div key={fact.k} className="bg-dark/40 px-5 py-4">
               <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-3">{fact.k}</dt>
-              <dd className="mt-1 font-display text-[17px] text-hero-ink">{fact.v}</dd>
+              <dd className="mt-1 font-display text-[17px] leading-snug text-hero-ink">{fact.v}</dd>
             </div>
           ))}
         </dl>
