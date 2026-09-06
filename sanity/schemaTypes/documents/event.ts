@@ -24,6 +24,7 @@ export const event = defineType({
     defineField({ name: "location", type: "localizedString", description: "e.g. Fellowship Hall" }),
     defineField({ name: "summary", type: "localizedText", validation: required }),
     defineField({ name: "details", type: "localizedRichText" }),
+    defineField({ name: "image", title: "Flyer / poster", type: "image", options: { hotspot: true }, description: "Optional. The social-media flyer works well here." }),
     defineField({ name: "registrationUrl", title: "Registration link", type: "url" }),
     defineField({ name: "cancelled", type: "boolean", initialValue: false }),
   ],

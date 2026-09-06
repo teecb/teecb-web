@@ -12,7 +12,7 @@ export const am: Dictionary = {
   nav: {
     home: "መነሻ",
     sermons: "ስብከቶች",
-    watch: "በቀጥታ ይመልከቱ",
+    watch: "ቀጥታ ስርጭት",
     events: "ፕሮግራሞች",
     about: "ስለ እኛ",
     beliefs: "እምነታችን",
@@ -46,6 +46,9 @@ export const am: Dictionary = {
   },
   home: {
     nextGathering: "የሚቀጥለው ስብሰባ",
+    greeting: "Welcome home",
+    liveSoon: "በ{time} በቀጥታ እንጀምራለን · በ{countdown}",
+    liveSoonNow: "በ{time} በቀጥታ እንጀምራለን · አሁን",
     sermonsEyebrow: "የቅርብ ስብከቶች",
     sermonsHeading: "የእሁድን ስብከት ይከታተሉ",
     eventsEyebrow: "በቅርቡ",

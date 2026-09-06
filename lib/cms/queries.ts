@@ -7,7 +7,7 @@ import { defineQuery } from "next-sanity";
 
 export const siteSettingsQuery = defineQuery(`*[_type == "siteSettings"][0]{
   name, shortName, wordmark, tagline, description, timeZone, address, contact,
-  services, socials, youtube, watch, giving, announcement
+  services, socials, youtube, watch{ mode, liveStartTime, liveVideoUrl }, giving, announcement
 }`);
 
 export const homePageQuery = defineQuery(`*[_type == "homePage"][0]{
@@ -24,7 +24,7 @@ export const statementOfFaithQuery = defineQuery(`*[_type == "statementOfFaith"]
 }`);
 
 export const eventsQuery = defineQuery(`*[_type == "event" && defined(startsAt)] | order(startsAt asc){
-  "slug": slug.current, title, startsAt, endsAt, location, summary, details, registrationUrl, cancelled
+  "slug": slug.current, title, startsAt, endsAt, location, summary, details, registrationUrl, cancelled, "imageUrl": image.asset->url
 }`);
 
 export const staffQuery = defineQuery(`*[_type == "staffMember"] | order(order asc, name asc){

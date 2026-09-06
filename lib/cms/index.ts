@@ -54,7 +54,11 @@ function normalizeSite(raw: RawSite): SiteSettings {
     services: raw.services?.length ? raw.services : base.services,
     socials: raw.socials ?? [],
     youtube: { ...base.youtube, ...raw.youtube },
-    watch: { mode: raw.watch?.mode ?? "auto", liveVideoUrl: raw.watch?.liveVideoUrl },
+    watch: {
+      mode: raw.watch?.mode ?? "auto",
+      liveStartTime: raw.watch?.liveStartTime ?? base.watch.liveStartTime,
+      liveVideoUrl: raw.watch?.liveVideoUrl,
+    },
     giving: { ...raw.giving },
     announcement: raw.announcement?.text ? raw.announcement : null,
   };

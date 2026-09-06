@@ -46,7 +46,7 @@ const FEED_REVALIDATE = 60;
 const VIDEO_REVALIDATE = 3_600;
 const CHANNEL_REVALIDATE = 86_400;
 /** Uploads shorter than this are clips or Shorts, not services, and are left out of the archive. */
-const MIN_RECORDING_SECONDS = 10 * 60;
+const MIN_RECORDING_SECONDS = 20 * 60;
 
 type Thumbnails = Record<string, { url?: string }>;
 

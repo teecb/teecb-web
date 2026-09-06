@@ -42,6 +42,9 @@ export const en = {
   },
   home: {
     nextGathering: "Next gathering",
+    greeting: "እንኳን ደህና መጡ",
+    liveSoon: "We go live at {time} · in {countdown}",
+    liveSoonNow: "We go live at {time} · any moment now",
     sermonsEyebrow: "Latest sermons",
     sermonsHeading: "Catch up on Sunday",
     eventsEyebrow: "Coming up",

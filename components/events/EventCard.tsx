@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Badge } from "@/components/ui/Badge";
 import { Icon } from "@/components/ui/Icon";
 import { RichText } from "@/components/ui/RichText";
@@ -32,12 +33,18 @@ export function EventCard({
   return (
     <article
       className={cn(
-        "flex gap-5 rounded-token-lg border border-line bg-surface p-5 shadow-token-sm transition-[transform,box-shadow] duration-300 ease-token sm:gap-7 sm:p-7",
+        "flex flex-col overflow-hidden rounded-token-lg border border-line bg-surface shadow-token-sm transition-[transform,box-shadow] duration-300 ease-token",
         !compact && "hover:-translate-y-0.5 hover:shadow-token-md",
         event.cancelled && "opacity-70",
         className,
       )}
     >
+      {event.imageUrl && (
+        <div className="relative aspect-[16/9] w-full bg-surface-2">
+          <Image src={event.imageUrl} alt="" fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
+        </div>
+      )}
+      <div className="flex gap-5 p-5 sm:gap-7 sm:p-7">
       <time
         dateTime={event.startsAt}
         className="flex h-[76px] w-[68px] shrink-0 flex-col items-center justify-center rounded-token bg-accent-soft text-accent-2"
@@ -83,6 +90,7 @@ export function EventCard({
             )}
           </div>
         )}
+      </div>
       </div>
     </article>
   );

@@ -97,6 +97,14 @@ export const siteSettings = defineType({
           type: "url",
           description: "Paste the YouTube watch/live link for today's broadcast — not the channel URL.",
         }),
+        defineField({
+          name: "liveStartTime",
+          title: "Weekly livestream start time (24h, HH:MM)",
+          type: "string",
+          initialValue: "10:30",
+          description: "Sunday worship begins at 10:00 AM; use this for when the YouTube broadcast normally starts.",
+          validation: (Rule) => Rule.regex(/^([01]\d|2[0-3]):[0-5]\d$/, { name: "24-hour time such as 10:30" }),
+        }),
       ],
     }),
     defineField({

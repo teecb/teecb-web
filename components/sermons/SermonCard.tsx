@@ -25,7 +25,7 @@ export function SermonCard({
   const duration = formatDuration(video.durationSeconds, minutesLabel);
   return (
     <Link
-      href={localePath(locale, `/sermons/${video.id}`)}
+      href={localePath(locale, `/sermons/${video.id}?play=1`)}
       className={cn(
         "group flex flex-col overflow-hidden rounded-token-lg border border-line bg-surface shadow-token-sm transition-[transform,box-shadow,border-color] duration-300 ease-token hover:-translate-y-1 hover:border-line-2 hover:shadow-token-md",
         className,

@@ -89,6 +89,8 @@ export type SiteSettings = {
   };
   watch: {
     mode: WatchMode;
+    /** Weekly livestream start time in 24-hour HH:MM format. */
+    liveStartTime?: string;
     /** Direct YouTube video URL; used only when mode is `forceLive`. */
     liveVideoUrl?: string;
   };
@@ -150,6 +152,8 @@ export type ChurchEvent = {
   details?: RichText;
   registrationUrl?: string;
   cancelled?: boolean;
+  /** Optional flyer / poster (Sanity image URL). */
+  imageUrl?: string;
 };
 
 export type StaffMember = {

@@ -2,11 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import "@/app/globals.css";
 import { Announcement } from "@/components/site/Announcement";
+import { ChurchJsonLd } from "@/components/site/ChurchJsonLd";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { SkipLink } from "@/components/site/SkipLink";
 import { ThemeScript } from "@/components/site/ThemeScript";
 import { activeAnnouncement, getSite } from "@/lib/cms";
+import { primaryService, serviceTimeLabel, weekdayName } from "@/lib/dates";
 import { brandLogoSrc } from "@/lib/brand";
 import { getDictionary, isLocale, localePath, locales, text, type Locale } from "@/lib/i18n";
 import { navItems } from "@/lib/navigation";
@@ -59,6 +61,10 @@ export default async function SiteLayout({ children, params }: { children: React
   const announcement = activeAnnouncement(site);
   const { home, items, give } = navItems(locale);
   const logoSrc = brandLogoSrc();
+  const service = primaryService(site.services);
+  const serviceChip = service
+    ? { label: `${weekdayName(service.dayOfWeek, locale, "short")} · ${serviceTimeLabel(service, locale)}`, href: localePath(locale, "/visit") }
+    : undefined;
 
   return (
     <html lang={locale} suppressHydrationWarning className="h-full antialiased">
@@ -68,6 +74,7 @@ export default async function SiteLayout({ children, params }: { children: React
         <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body className="flex min-h-full flex-col">
+        <ChurchJsonLd site={site} locale={locale} />
         <SkipLink label={t.common.skipToContent} />
         {announcement && (
           <Announcement
@@ -86,6 +93,7 @@ export default async function SiteLayout({ children, params }: { children: React
           items={items}
           give={give}
           watchHref={localePath(locale, "/watch")}
+          serviceChip={serviceChip}
           liveLabel={t.common.liveNow}
           initialLive={live.status === "live"}
           labels={{

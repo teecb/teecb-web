@@ -16,7 +16,7 @@ import { pageMetadata } from "@/lib/seo";
 import { truncate, youtubeWatchUrl } from "@/lib/utils";
 import { getChannelFeed, getVideo } from "@/lib/youtube";
 
-type Props = { params: Promise<{ lang: string; videoId: string }> };
+type Props = { params: Promise<{ lang: string; videoId: string }>; searchParams?: Promise<{ play?: string }> };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const locale = await resolveLocale(props);
@@ -60,8 +60,10 @@ export default async function SermonPage(props: Props) {
   const locale = await resolveLocale(props);
   const { videoId } = await props.params;
   const t = getDictionary(locale);
-  const [site, video] = await Promise.all([getSite(), getVideo(videoId)]);
+  const [site, video, search] = await Promise.all([getSite(), getVideo(videoId), props.searchParams]);
   if (!video) notFound();
+  // Cards link here with ?play=1 so one click lands on the big player already playing.
+  const autoplay = search?.play === "1";
 
   const feed = await getChannelFeed(12);
   const more = feed.videos.filter((v) => v.id !== video.id).slice(0, 3);
@@ -78,7 +80,7 @@ export default async function SermonPage(props: Props) {
           </Link>
         </Container>
         <Container className="py-6 sm:py-8">
-          <YouTubePlayer videoId={video.id} title={video.title} poster={video.thumbnailUrl} playLabel={t.sermons.play} className="rounded-token-lg shadow-token-lg ring-1 ring-white/10" />
+          <YouTubePlayer videoId={video.id} title={video.title} poster={video.thumbnailUrl} autoplay={autoplay} playLabel={t.sermons.play} className="rounded-token-lg shadow-token-lg ring-1 ring-white/10" />
         </Container>
       </div>
 
@@ -119,7 +121,7 @@ export default async function SermonPage(props: Props) {
               <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-accent">{t.watch.title}</p>
               <p className="mt-3 text-[15px] text-muted">{t.watch.introOffline}</p>
               <div className="mt-5">
-                <Button href={localePath(locale, "/watch")} size="sm" icon="play" iconPosition="left">
+                <Button href={localePath(locale, "/watch#watch-player")} size="sm" icon="play" iconPosition="left">
                   {t.common.watchLive}
                 </Button>
               </div>

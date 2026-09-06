@@ -4,8 +4,8 @@ import type { HomePage } from "./types";
 export const home: HomePage = {
   hero: {
     eyebrow: { en: "Welcome home", am: "እንኳን ወደ ቤትዎ በደህና መጡ" },
-    heading: { en: "You have a place at the", am: "በማዕዱ ላይ" },
-    emphasis: { en: "table", am: "ቦታ አለዎት" },
+    heading: { en: "Worship with us in Boston, in the language of", am: "በቦስተን፣ በቤታችን ቋንቋ" },
+    emphasis: { en: "home.", am: "አብረን እናምልክ።" },
     body: {
       en: "An Ethiopian evangelical community in Boston, learning to follow Jesus together — across generations and languages. Come as you are; you're welcome here.",
       am: "በቦስተን የሚገኝ የኢትዮጵያ ወንጌላዊ ማኅበረሰብ፤ በትውልዶችና በቋንቋዎች መካከል ኢየሱስን አብረን ለመከተል የምንማር። እንዳሉ ይምጡ፤ እዚህ እንኳን ደህና መጡ።",

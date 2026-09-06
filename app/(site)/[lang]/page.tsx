@@ -28,13 +28,14 @@ export default async function HomePage(props: LangParams) {
 
   const [site, home, events, feed] = await Promise.all([getSite(), getHome(), getEvents(), getChannelFeed(12)]);
   const live = await getLiveStream(site.watch, feed);
-  const latest = feed.videos.slice(0, 3);
+  const featured = feed.live ?? feed.videos[0] ?? null;
+  const latest = feed.videos.filter((v) => v.id !== featured?.id).slice(0, 3);
   const upcoming = upcomingEvents(events).slice(0, 3);
   const href = (h: string) => (isExternalHref(h) ? h : localePath(locale, h));
 
   return (
     <>
-      <Hero locale={locale} site={site} home={home} live={live} t={t} />
+      <Hero locale={locale} site={site} home={home} live={live} featured={featured} t={t} />
 
       {/* Latest sermons */}
       <Section>

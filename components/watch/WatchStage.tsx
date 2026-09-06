@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { YouTubePlayer } from "@/components/media/YouTubePlayer";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -45,6 +46,20 @@ export function WatchStage({
   const live = useLiveStatus(initialLive);
   const isLive = live !== null;
   const featured = live ? { id: live.id, title: live.title, poster: undefined } : latest ? { id: latest.id, title: latest.title, poster: latest.poster } : null;
+  const playerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (window.location.hash !== "#watch-player") return;
+
+    const frame = requestAnimationFrame(() => {
+      playerRef.current?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "center",
+      });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   return (
     <section className="relative isolate overflow-hidden bg-dark text-hero-ink">
@@ -61,7 +76,7 @@ export function WatchStage({
         </div>
 
         {featured ? (
-          <div className="overflow-hidden rounded-token-lg shadow-token-lg ring-1 ring-white/10">
+          <div ref={playerRef} id="watch-player" className="overflow-hidden rounded-token-lg shadow-token-lg ring-1 ring-white/10">
             {/* Keyed so a switch to the live broadcast remounts the player and autoplays. */}
             <YouTubePlayer key={`${featured.id}:${isLive}`} videoId={featured.id} title={featured.title} poster={featured.poster} autoplay={isLive} playLabel={labels.play} />
             <div className="flex flex-col gap-4 bg-dark-2/80 px-5 py-5 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:px-7">

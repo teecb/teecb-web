@@ -2,7 +2,8 @@ import type { SiteSettings } from "./types";
 
 /**
  * Fallback site settings, used until the matching Sanity document exists.
- * REVIEW: address, phone, email, socials and giving details are placeholders.
+ * REVIEW: address and hours come from the church's (unclaimed) Yelp listing —
+ * confirm with the church. Phone, email, socials and giving details are placeholders.
  */
 export const site: SiteSettings = {
   name: {
@@ -24,10 +25,10 @@ export const site: SiteSettings = {
   },
   timeZone: "America/New_York",
   address: {
-    line1: "80 Tremont St",
+    line1: "88 Tremont St",
     city: "Boston",
     region: "MA",
-    postalCode: "02116",
+    postalCode: "02108",
     country: "US",
     parkingNote: {
       en: "Street parking is free on Sundays. A public garage is a short walk away.",
@@ -43,16 +44,17 @@ export const site: SiteSettings = {
       name: { en: "Sunday Worship", am: "የእሁድ አምልኮ" },
       dayOfWeek: 0,
       startTime: "10:00",
-      durationMinutes: 120,
+      durationMinutes: 150,
       note: { en: "In Amharic", am: "በአማርኛ" },
       isPrimary: true,
     },
     {
       name: { en: "Prayer Meeting", am: "የጸሎት ስብሰባ" },
       dayOfWeek: 3,
-      startTime: "18:30",
-      durationMinutes: 90,
+      startTime: "18:00",
+      durationMinutes: 120,
     },
+    // REVIEW: Friday Bible study is not in the Yelp hours — confirm it exists.
     {
       name: { en: "Bible Study", am: "የመጽሐፍ ቅዱስ ጥናት" },
       dayOfWeek: 5,
@@ -70,6 +72,7 @@ export const site: SiteSettings = {
   },
   watch: {
     mode: "auto",
+    liveStartTime: "10:30",
   },
   giving: {
     // REVIEW: add the Vanco Give+ URL and text-to-give number when available.
@@ -80,8 +83,8 @@ export const site: SiteSettings = {
   announcement: {
     label: { en: "This Sunday", am: "በዚህ እሁድ" },
     text: {
-      en: "Join us for worship at 10:00 AM — in person or online. Everyone is welcome.",
-      am: "እሁድ ጥዋት 10:00 በአካል ወይም በመስመር ላይ ለአምልኮ ይቀላቀሉን። ሁሉም እንኳን ደህና መጡ።",
+      en: "Join us in person for worship at 10:00 AM — the livestream begins at 10:30 AM. Everyone is welcome.",
+      am: "እሁድ ጥዋት 10:00 በአካል ለአምልኮ ይቀላቀሉን — የቀጥታ ስርጭቱ 10:30 ላይ ይጀምራል። ሁሉም እንኳን ደህና መጡ።",
     },
     href: "/watch",
   },

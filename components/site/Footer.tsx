@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
+import { TibebBand } from "@/components/ui/TibebBand";
 import type { SiteSettings } from "@/lib/content/types";
 import { serviceTimeLabel, weekdayName } from "@/lib/dates";
 import { type Dictionary, localePath, text, type Locale } from "@/lib/i18n";
@@ -17,6 +18,7 @@ export function Footer({ site, locale, t, items, logoSrc = null }: { site: SiteS
     <footer className="relative mt-auto overflow-hidden bg-dark text-hero-ink">
       <div className="mesh opacity-40" aria-hidden />
       <div className="grain" aria-hidden />
+      <TibebBand className="relative" opacity={0.5} />
       <Container className="relative py-16 sm:py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
           <div>

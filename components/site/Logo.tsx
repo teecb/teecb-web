@@ -40,8 +40,8 @@ export function Logo({
     <Link href={href} className={cn("group inline-flex items-center gap-3 rounded-full", onDark ? "text-hero-ink" : "text-ink")} aria-label={name}>
       <BrandMark src={logoSrc} size={compact ? 38 : 42} className="transition-transform duration-300 ease-token group-hover:-rotate-3" />
       <span className="flex flex-col leading-none" aria-hidden>
-        <span className="font-display text-[16.5px] font-semibold tracking-tight sm:text-[17.5px]">{wordmark.line1}</span>
-        <span className={cn("mt-1 text-[9.5px] font-semibold uppercase tracking-[0.16em] sm:text-[10px]", onDark ? "text-accent-3" : "text-accent")}>
+        <span className="whitespace-nowrap font-display text-[16px] font-semibold tracking-tight sm:text-[17.5px]">{wordmark.line1}</span>
+        <span className={cn("mt-1 whitespace-nowrap text-[8.5px] font-semibold uppercase tracking-[0.12em] sm:text-[10px] sm:tracking-[0.16em]", onDark ? "text-accent-3" : "text-accent")}>
           {wordmark.line2}
         </span>
       </span>

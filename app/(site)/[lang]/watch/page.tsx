@@ -28,7 +28,8 @@ export default async function WatchPage(props: LangParams) {
   const isLive = live.status === "live";
 
   const service = primaryService(site.services);
-  const nextStart = service ? nextServiceStart(service, site.timeZone) : null;
+  const livestreamService = service ? { ...service, startTime: site.watch.liveStartTime ?? service.startTime } : null;
+  const nextStart = livestreamService ? nextServiceStart(livestreamService, site.timeZone) : null;
   const latest = feed.videos[0];
   const recent = feed.videos.filter((v) => v.id !== latest?.id).slice(0, 6);
 

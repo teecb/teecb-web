@@ -25,6 +25,8 @@ export type HeaderProps = {
   give: NavItem;
   /** Where the live pill links; the pill itself appears whenever the church is live. */
   watchHref: string;
+  /** "Sun · 10:00 AM" chip linking to the Visit page. */
+  serviceChip?: { label: string; href: string };
   liveLabel: string;
   initialLive: boolean;
   labels: {
@@ -37,10 +39,10 @@ export type HeaderProps = {
 };
 
 /** Sticky site header: frosted on scroll, active-link state, full-screen mobile menu. */
-export function Header({ locale, homeHref, name, wordmark, logoSrc, items, give, watchHref, liveLabel, initialLive, labels }: HeaderProps) {
+export function Header({ locale, homeHref, name, wordmark, logoSrc, items, give, watchHref, serviceChip, liveLabel, initialLive, labels }: HeaderProps) {
   const pathname = usePathname();
   const liveNow = useLiveStatus(initialLive ? { id: "", title: "" } : null);
-  const live = liveNow ? { href: watchHref, label: liveLabel } : undefined;
+  const live = liveNow ? { href: `${watchHref}#watch-player`, label: liveLabel } : undefined;
   const [scrolled, setScrolled] = useState(false);
   // The menu is "open for this pathname" so navigating closes it without an effect.
   const [openAt, setOpenAt] = useState<string | null>(null);
@@ -80,7 +82,18 @@ export function Header({ locale, homeHref, name, wordmark, logoSrc, items, give,
           scrolled ? "h-[var(--nav-h-compact)]" : "h-[var(--nav-h)]",
         )}
       >
-        <Logo href={homeHref} name={name} wordmark={wordmark} logoSrc={logoSrc} compact />
+        <div className="flex items-center gap-4">
+          <Logo href={homeHref} name={name} wordmark={wordmark} logoSrc={logoSrc} compact />
+          {serviceChip && !live && (
+            <Link
+              href={serviceChip.href}
+              className="hidden items-center gap-1.5 whitespace-nowrap rounded-full border border-line-2 px-3 py-1.5 text-[12px] font-semibold text-ink-soft transition-colors hover:border-accent hover:text-accent xl:inline-flex"
+            >
+              <Icon name="clock" size={13} className="text-accent" />
+              {serviceChip.label}
+            </Link>
+          )}
+        </div>
 
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
           {items.map((item) => (
@@ -89,7 +102,7 @@ export function Header({ locale, homeHref, name, wordmark, logoSrc, items, give,
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "relative rounded-full px-3.5 py-2 text-[14.5px] font-medium transition-colors duration-200",
+                "relative whitespace-nowrap rounded-full px-3 py-2 text-[14.5px] font-medium transition-colors duration-200 xl:px-3.5",
                 isActive(item.href) ? "text-accent" : "text-ink-soft hover:text-accent",
                 "after:absolute after:bottom-0.5 after:left-1/2 after:h-[3px] after:w-[3px] after:-translate-x-1/2 after:rounded-full after:bg-accent after:opacity-0 after:transition-opacity",
                 isActive(item.href) && "after:opacity-100",
