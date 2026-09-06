@@ -135,8 +135,6 @@ export const am: Dictionary = {
     faithEyebrow: "እምነታችን",
     faithHeading: "የእምነት መግለጫ",
     faithIntro: "የትሬሞንት የኢትዮጵያ ወንጌላዊት ቤተ ክርስቲያን የእምነት መግለጫ።",
-    translationPending: "የዚህ ክፍል የእንግሊዝኛ ትርጉም በግምገማ ላይ ሲሆን በቅርቡ ይታተማል።",
-    translationDraft: "ይህ የእንግሊዝኛ ጽሑፍ የቤተ ክርስቲያኑን ይሁንታ የሚጠብቅ ረቂቅ ትርጉም ነው። አማርኛው ትክክለኛው ቅጂ ነው።",
     faithTeaser: "ስለ እግዚአብሔር፣ ስለ ቅዱስ ቃሉ፣ ስለ ደህንነትና ስለ ቤተ ክርስቲያን የምናምነው — ሙሉው መግለጫ አንቀጽ በአንቀጽ።",
     readStatement: "የእምነት መግለጫውን ያንብቡ",
     readInAmharic: "በአማርኛ ያንብቡ",

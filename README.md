@@ -155,6 +155,5 @@ polling visitors cost no API quota.
 - [ ] Leadership names, bios and photos
 - [ ] Church story and values reviewed
 - [ ] Amharic UI strings reviewed (`lib/i18n/dictionaries/am.ts`)
-- [ ] Church review of the draft English Statement of Faith, then tick “English translation approved” in Studio (`lib/content/beliefs.ts` → `englishApproved` until Sanity is live)
 - [ ] Crest artwork for logo and icons
 - [ ] `NEXT_PUBLIC_SITE_URL` set to the final domain

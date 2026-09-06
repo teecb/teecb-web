@@ -11,5 +11,5 @@ export { home } from "./home";
 export { about } from "./about";
 export { events } from "./events";
 export { staff } from "./staff";
-export { beliefs, englishApproved } from "./beliefs";
+export { beliefs } from "./beliefs";
 export * from "./types";

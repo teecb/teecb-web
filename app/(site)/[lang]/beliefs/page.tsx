@@ -23,7 +23,7 @@ export default async function BeliefsPage(props: LangParams) {
       <PageHero eyebrow={t.about.faithEyebrow} title={t.about.faithHeading} intro={t.about.faithIntro} />
       <Section>
         <div className="mx-auto max-w-3xl">
-          <StatementOfFaith sections={faith.sections} englishApproved={faith.englishApproved} locale={locale} t={t} />
+          <StatementOfFaith sections={faith.sections} locale={locale} t={t} />
         </div>
       </Section>
       <Section tone="soft" space="sm">

@@ -131,8 +131,6 @@ export const en = {
     faithEyebrow: "What we believe",
     faithHeading: "Statement of Faith",
     faithIntro: "The Statement of Faith of Tremont Ethiopian Evangelical Church.",
-    translationPending: "The English translation of this section is being reviewed and will be published soon.",
-    translationDraft: "This English text is a draft translation awaiting the church's approval. The Amharic is the authoritative version.",
     faithTeaser: "What we believe about God, Scripture, salvation, and the church — the full statement, article by article.",
     readStatement: "Read the Statement of Faith",
     readInAmharic: "Read in Amharic",

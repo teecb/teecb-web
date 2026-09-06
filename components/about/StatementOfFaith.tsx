@@ -6,17 +6,11 @@ import type { Belief, BeliefCopy } from "@/lib/content/types";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-type Lang = "am" | "en";
-
-function copyFor(item: Belief, lang: Lang): BeliefCopy | undefined {
+function copyFor(item: Belief, lang: Locale): BeliefCopy | undefined {
   return lang === "am" ? item.amharic : item.english;
 }
 
-function hasEnglish(items: Belief[]): boolean {
-  return items.some((item) => item.english);
-}
-
-function Item({ item, lang, open, onToggle, nested = false }: { item: Belief; lang: Lang; open: Set<string>; onToggle: (n: string) => void; nested?: boolean }) {
+function Item({ item, lang, open, onToggle, nested = false }: { item: Belief; lang: Locale; open: Set<string>; onToggle: (n: string) => void; nested?: boolean }) {
   const copy = copyFor(item, lang) ?? item.amharic;
   const isOpen = open.has(item.number);
   const panelId = `belief-${item.number.replace(/\W/g, "-")}`;
@@ -55,13 +49,9 @@ function Item({ item, lang, open, onToggle, nested = false }: { item: Belief; la
   );
 }
 
-/**
- * Accordion of the Statement of Faith. Amharic is the authoritative text;
- * English shows only when the church has supplied an approved translation.
- */
-export function StatementOfFaith({ sections, englishApproved, locale, t }: { sections: Belief[]; englishApproved: boolean; locale: Locale; t: Dictionary }) {
-  const englishReady = hasEnglish(sections);
-  const [lang, setLang] = useState<Lang>(locale === "en" && englishReady ? "en" : "am");
+/** Accordion of the Statement of Faith. */
+export function StatementOfFaith({ sections, locale, t }: { sections: Belief[]; locale: Locale; t: Dictionary }) {
+  const lang = locale;
   const [open, setOpen] = useState<Set<string>>(() => new Set(sections[0] ? [sections[0].number] : []));
 
   const all = (items: Belief[]): string[] => items.flatMap((i) => [i.number, ...(i.subSections ? all(i.subSections) : [])]);
@@ -75,24 +65,7 @@ export function StatementOfFaith({ sections, englishApproved, locale, t }: { sec
 
   return (
     <div>
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-        {englishReady ? (
-          <div className="inline-flex rounded-full border border-line-2 p-1 text-[13px] font-semibold">
-            {(["am", "en"] as Lang[]).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                aria-pressed={lang === l}
-                className={cn("rounded-full px-4 py-1.5 transition-colors", lang === l ? "bg-ink text-canvas" : "text-ink-soft hover:text-accent")}
-              >
-                {l === "am" ? "አማርኛ" : "English"}
-              </button>
-            ))}
-          </div>
-        ) : (
-          locale === "en" && <p className="max-w-xl text-[14.5px] text-muted">{t.about.translationPending}</p>
-        )}
+      <div className="mb-8 flex justify-end">
         <div className="flex gap-4 text-[13.5px] font-semibold text-accent">
           <button type="button" onClick={() => setOpen(new Set(all(sections)))} className="hover:text-accent-2">
             {t.about.expandAll}
@@ -102,9 +75,6 @@ export function StatementOfFaith({ sections, englishApproved, locale, t }: { sec
           </button>
         </div>
       </div>
-      {lang === "en" && !englishApproved && (
-        <p className="mb-6 rounded-token border border-gold/40 bg-gold-soft px-4 py-3 text-[14px] text-ink-soft">{t.about.translationDraft}</p>
-      )}
       <div className="space-y-4">
         {sections.map((section) => (
           <Item key={section.number} item={section} lang={lang} open={open} onToggle={toggle} />

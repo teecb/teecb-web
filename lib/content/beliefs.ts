@@ -1,12 +1,5 @@
 import type { Belief } from "./types";
 
-/**
- * Statement of Faith. The Amharic text is the church's authoritative document
- * (የእምነት መግለጫ). The English is a DRAFT translation prepared for review —
- * keep `englishApproved` false until the church has signed off on it.
- */
-export const englishApproved = false;
-
 export const beliefs: Belief[] = [
   {
     number: "1",

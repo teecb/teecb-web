@@ -19,7 +19,6 @@ export const aboutPageQuery = defineQuery(`*[_type == "aboutPage"][0]{
 }`);
 
 export const statementOfFaithQuery = defineQuery(`*[_type == "statementOfFaith"][0]{
-  englishApproved,
   sections[]{ number, amharic, english, subSections[]{ number, amharic, english, subSections[] } }
 }`);
 

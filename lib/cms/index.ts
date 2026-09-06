@@ -91,10 +91,10 @@ export async function getAbout(): Promise<AboutPage> {
 }
 
 export async function getStatementOfFaith(): Promise<StatementOfFaith> {
-  const fallback = { sections: local.beliefs, englishApproved: local.englishApproved };
+  const fallback = { sections: local.beliefs };
   if (!(await isCmsReady())) return fallback;
   const doc = await query<Partial<StatementOfFaith>>(statementOfFaithQuery);
-  return doc?.sections?.length ? { sections: doc.sections, englishApproved: Boolean(doc.englishApproved) } : fallback;
+  return doc?.sections?.length ? { sections: doc.sections } : fallback;
 }
 
 export async function getEvents(): Promise<ChurchEvent[]> {

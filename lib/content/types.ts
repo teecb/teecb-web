@@ -179,6 +179,4 @@ export type Belief = {
 
 export type StatementOfFaith = {
   sections: Belief[];
-  /** False while the English text is an unreviewed draft; the site labels it as such. */
-  englishApproved: boolean;
 };

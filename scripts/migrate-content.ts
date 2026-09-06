@@ -9,7 +9,7 @@
  * site read from Sanity instead of the local files.
  */
 import { getCliClient } from "sanity/cli";
-import { about, beliefs, englishApproved, events, home, site, staff } from "../lib/content";
+import { about, beliefs, events, home, site, staff } from "../lib/content";
 
 const client = getCliClient({ apiVersion: "2026-08-29" });
 
@@ -17,7 +17,7 @@ const documents = [
   { _id: "drafts.siteSettings", _type: "siteSettings", ...site },
   { _id: "drafts.homePage", _type: "homePage", ...home },
   { _id: "drafts.aboutPage", _type: "aboutPage", ...about },
-  { _id: "drafts.statementOfFaith", _type: "statementOfFaith", englishApproved, sections: beliefs },
+  { _id: "drafts.statementOfFaith", _type: "statementOfFaith", sections: beliefs },
   ...events.map(({ slug, ...rest }) => ({
     _id: `drafts.event-${slug}`,
     _type: "event",
